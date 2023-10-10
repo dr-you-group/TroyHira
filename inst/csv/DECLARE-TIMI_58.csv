@@ -1,0 +1,25 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age mean,63.9,6.8,64,6.8,Demographics,,8582,8578,mean,2,1,,Y
+Female sex,3171,,3251,,Demographics,,,,n,1,8532,,
+Race,0,,0,,Demographics,Y,,,n,,,,
+Region,0,,0,,Demographics,Y,,,n,,,,
+BMI mean,32.1,6,32,6.1,Demographics,,,,mean,705,40762636,,Y
+median duration of type 2 diabetes,11,,10,,Duration of type 2 diabetes,Y,,,median,,,,
+Glycated hemoglobin,8.3,1.2,8.3,1.2,Lab values,,,,mean,705,3004410,,Y
+Systolic blood pressure — mm Hg,135.1,15.3,134.8,15.5,Lab values,,,,mean,705,3004249,,Y
+Estimated glomerular filtration rate — ml/min/1.73,85.4,15.8,85.1,16,Lab values,,,,mean,705,3029859,,Y
+Established atherosclerotic cardiovascular disease — no.,3574,,3500,,Lab values,,,,n,,,,
+History of coronary artery disease — no.,2824,,2834,,Medical history,,,,n,,,,
+History of peripheral artery disease — no. ,522,,503,,Medical history,,,,n,,,,
+History of cerebrovascular disease — no.,653,,648,,Medical history,,,,n,,,,
+History of heart failure — no.,852,,872,,Medical history,,,,n,210,316139,,
+Insulin,3567,,3446,,Glucose-lowering therapies,,,,n,410,21600713,,
+Metformin,7020,,7048,,Glucose-lowering therapies,,,,n,410,1503297,,
+Sulfonylurea,3615,,3707,,Glucose-lowering therapies,,,,n,410,21600749,,
+DPP-4,1418,,1470,,Glucose-lowering therapies,,,,n,410,21600783,,
+GLP-1 receptor agonis,397,,353,,Glucose-lowering therapies,,,,n,410,1123618,,
+Antiplatelet agents,5245,,5242,,Cardiovascular therapies,,,,n,410,21600985,,
+ACE inhibitor or ARB ,6977,,6973,,Cardiovascular therapies,,,,n,410,21601783;21601801;21601822;21601832,,
+Beta-blocker ,4498,,4532,,Cardiovascular therapies,,,,n,410,21601664,,
+Statin or ezetimibe ,6432,,6436,,Cardiovascular therapies,,,,n,410,21601855;1526475,,
+Diuretics ,3488,,3479,,Cardiovascular therapies,,,,n,410,21601461,,

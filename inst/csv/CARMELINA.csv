@@ -1,0 +1,44 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age mean,66.1,9.1,65.6,9.1,Demographics,,3494,3485,mean,2,1,,Y
+Sex male,2148,,2242,,Demographics,,,,n,1,8507,,
+Sex female,1346,,1243,,Demographics,,,,n,1,8532,,
+Race,0,,0,,Demographics,Y,,,n,,,,
+Region,0,,0,,Demographics,Y,,,n,,,,
+Smoking status,0,,0,,Demographics,Y,,,n,,,,
+History of heart failure,952,,921,,Medical history,,,,n,210,316139,,
+Ischemic heart disease,2029,,2052,,Medical history,,,,n,210,4185932,,
+History of hypertension,3171,,3178,,Medical history,,,,n,210,320128,,
+Atrial fibrillation,319,,354,,Medical history,,,,n,210,313217,,
+"eGFR (MDRD), ML/min/1.73m2 mean",54.7,25.1,54.5,24.9,Lab values,,,,mean,705,3049187,,Y
+eGFR (MDRD) >= 90,363,,365,,Lab values,,,,n,705,3049187,covariateValue >= 90,
+eGFR (MDRD) >= 60,1294,,1337,,Lab values,,,,n,705,3049187,covariateValue >= 60,
+eGFR (MDRD) >= 45 to <60,690,,658,,Lab values,,,,n,705,3049187,covariateValue >= 45 & covariateValue < 60,
+eGFR (MDRD) >= 30 to <45,994,,944,,Lab values,,,,n,705,3049187,covariateValue >= 30 & covariateValue < 45,
+eGFR (MDRD) < 60,516,,546,,Lab values,,,,n,705,3049187,covariateValue < 60,
+"UACR, median, mg/g",162,,162,,Lab values,,,,median,705,3020682,,Y
+No. (%)c <30,696,,696,,Lab values,,,,n,705,3024561,covariateValue < 30,
+No. (%)c 30-300,1463,,1431,,Lab values,,,,n,705,3024561,covariateValue >= 30 & covariateValue <= 300,
+No. (%)c > 300,1333,,1357,,Lab values,,,,n,705,3024561,covariateValue > 300,
+Body mass index,31.4,5.3,31.3,5.4,Demographics,,,,mean,705,40762636,,Y
+Hemoglobin A1c,7.9,1,8,1,Lab values,,,,mean,705,3004410,,Y
+"Fasting plasma glucose, mg/dL",151.2,45,151.2,45,Lab values,,,,mean,705,3004501,,Y
+"Diabetes duration, y",15,9.6,14.5,9.3,Diabetes duration,Y,,,continuous,,,,
+"Systolic blood pressure, mm Hg",140.4,17.7,140.6,18,Lab values,,,,mean,705,3004249,,Y
+"Diastolic blood pressure, mm Hg",77.8,10.5,77.9,10.4,Lab values,,,,mean,705,3012888,,Y
+"Heart rate, /min",69.8,12.2,69.8,12.3,Lab values,,,,mean,705,3027018,,Y
+"Total cholesterol, mg/dL",173,49,171,47,Lab values,,,,mean,705,3027114,,Y
+"Low-density lipoprotein cholesterol, mg/dL",92,40,9,39,Lab values,,,,mean,705,3028437,,Y
+"High-density lipoprotein cholesterol, mg/dL",45,13,44,13,Lab values,,,,mean,705,3007070,,Y
+"Triglycerides, mg/dL",190,136,187,130,Lab values,,,,mean,705,3022192,,Y
+"≥1 Glucose-lowering medication, No. (%) ",3378,,3376,,Glucose-lowering medication,,,,n,,,,
+Metformin,1881,,1927,,Glucose-lowering medication,,,,n,410,1503297,,
+Sulfonylurea,1102,,1140,,Glucose-lowering medication,,,,n,410,21600749,,
+Insulin,2056,,1995,,Glucose-lowering medication,,,,n,410,21600713,,
+"No. of background glucose-lowering therapies, No. (%)",0,,0,,Background glucose-lowering therapies,Y,,,n,,,,
+"≥1 Antihypertensive medication, No. (%)",3337,,3354,,Antihypertensive medication,,,,n,410,21600381,,
+ACE inhibitors or ARBs,2860,,2798,,Antihypertensive medication,,,,n,410,21601783;21601801;21601822;21601832,,
+Beta-blockers,2080,,2073,,Antihypertensive medication,,,,n,410,21601664,,
+Diuretics,1892,,1936,,Antihypertensive medication,,,,n,410,21601461,,
+Calcium antagonists,1433,,1446,,Antihypertensive medication,,,,n,410,21601744,,
+Aspirin,2166,,2178,,Medication history,,,,n,410,1112807,,
+Statin,2495,,2523,,Medication history,,,,n,410,21601853,,

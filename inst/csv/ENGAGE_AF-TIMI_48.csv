@@ -1,0 +1,23 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age median,72,,72,,Demographics,,14069,7036,median,2,1,,Y
+Age interquartile range,64-78,,64-78,,Demographics,,,,IQR,2,1,,
+Female sex,5399,,2641,,Demographics,,,,n,1,8532,,
+Region,0,,0,,Demographics,Y,,,n,,,,
+Paroxysmal atrial fibrillation,0,,0,,Paroxysmal atrial fibrillation,,,,n,210,4154290,,
+Age >= 75yr,5654,,2820,,Qualifying risk factor,,,,n,2,1,covariateValue >= 75,
+Prior stroke or transient ischemic attack,3982,,1991,,Qualifying risk factor,,,,n,210,312337;372924;375557;376713;432923;439847;441874;443454;4148906;43530727;373503,,
+Congestive heart failure,8076,,4048,,Qualifying risk factor,,,,n,210,319835,,
+Diabetes mellitus,5103,,2521,,Qualifying risk factor,,,,n,210,201820,,
+Hypertension requiring treatment,13166,,6588,,Qualifying risk factor,,,,n,410,21600381,,
+CHADS2 score mean,2.8,1,2.8,1,CHADS2 score,,,,mean,904,1,,Y
+CHADS2 score <= 3,10892,,5445,,CHADS2 score,,,,n,904,1,covariateValue <= 3,
+CHADS2 score 4-6,3177,,1591,,CHADS2 score,,,,n,904,1,covariateValue > 3,
+Dose reduction at randomization,3569,,1787,,Dose reduction at randomization,Y,,,n,,,,
+Creatinine clearance ≤50 ml/min,2713,,1361,,Dose reduction at randomization,,,,n,705,3027108,covariateValue <= 50,
+Weight ≤60 kg,1382,,701,,Dose reduction at randomization,,,,n,705,3025315,covariateValue <= 60,
+Use of verapamil or quinidine,518,,243,,Dose reduction at randomization,,,,n,410,1307863;21600250,,
+Previous use of vitamin K antagonist for ≥60 days — no. (%),8303,,4138,,Medication history,Y,,,n,,,,
+Aspirin,4088,,2092,,Medication history,,,,n,410,1112807,,
+Thienopyridine,323,,164,,Medication history,,,,n,410,21600985,,
+Amiodarone,1665,,827,,Medication history,,,,n,410,1309944,,
+Digoxin or digitalis preparation,4151,,2176,,Medication history,,,,n,410,21601240,,

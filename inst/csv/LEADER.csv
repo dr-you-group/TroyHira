@@ -1,0 +1,29 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Male sex,3011,,2992,,Demographics,,4668,4672,n,1,8507,,
+"Age mean, y",64.2,,64.4,,Demographics,,,,mean,2,1,,Y
+"Diabetes duration, y",12.8,,12.9,,Diabetes duration,Y,,,continuous,,,,
+Geographic region,0,,0,,Demographics,Y,,,n,,,,
+"Glycated hemoglobin, %",8.7,1.6,8.7,1.5,Lab values,,,,mean,705,3004410,,Y
+"BMI, kg/m2",32.5,6.3,32.5,6.3,Demographics,,,,mean,705,40762636,,Y
+"Body weight, kg",91.9,21.2,91.6,20.8,Demographics,,,,mean,705,3025315,,Y
+"Systolic blood pressure, mm Hg ",135.9,17.8,135.9,17.7,Lab values,,,,mean,705,3004249,,Y
+"Diastolic blood pressure, mm Hg ",77.2,10.3,77,10.1,Lab values,,,,mean,705,3012888,,Y
+Heart failure,835,,832,,Medical history,,,,n,210,316139,,
+Established CVD (age >50) ,3831,,3767,,Established CVD (age>=50),,,,n,410,,,
+Prior myocardial infarction ,1464,,1400,,Established CVD (age>=50),,,,n,410,,,
+Prior stroke or transient ischemic attack,730,,777,,Established CVD (age>=50),,,,n,410,,,
+Prior revascularization,1835,,1803,,Established CVD (age>=50),,,,n,410,,,
+">50% stenosis of coronary, carotid, or lower extremity arteries",1188,,1191,,Established CVD (age>=50),,,,n,,,,
+Documented symptomatic CHD,412,,406,,Established CVD (age>=50),Y,,,n,,,,
+Documented asymptomatic cardiac ischemiac,1241,,1231,,Established CVD (age>=50),Y,,,n,,,,
+Heart failure NYHA II – III,653,,652,,Established CVD (age>=50),Y,,,n,,,,
+Chronic kidney diseased,1185,,1122,,Established CVD (age>=50),,,,n,,,,
+CVD risk factors (age >60 ),837,,905,,CVD risk factor,,,,n,410,,,
+Microalbuminuria or proteinuria ,501,,558,,CVD risk factor,,,,n,410,,,
+Hypertension and left ventricular hypertrophy ,248,,251,,CVD risk factor,,,,n,410,,,
+Left ventricular systolic or diastolic dysfunction ,203,,191,,CVD risk factor,,,,n,410,,,
+Ankle-brachial index,110,,116,,CVD risk factor,,,,n,410,,,
+Normal (eGFR >90) ,1620,,1655,,Renal fuction,,,,n,705,,,
+Mild impairment (eGFR 60–89) ,1932,,1975,,Renal fuction,,,,n,705,,,
+Moderate impairment (eGFR 30–59) ,999,,935,,Renal fuction,,,,n,705,,,
+Severe impairment (eGFR<30),117,,107,,Renal fuction,,,,n,705,,,

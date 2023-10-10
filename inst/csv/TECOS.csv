@@ -1,0 +1,39 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age years,65.4,7.9,65.5,8,Demographics,,7332,7339,mean,2,1,,Y
+Female sex,2134,,2163,,Demographics,,,,n,1,8532,,
+Race/Ethnicity,0,,0,,Demographics,Y,,,n,,,,
+Hispanic or Latino,0,,0,,Demographics,Y,,,n,,,,
+Duration of diabetes (years),11.6,8.1,11.6,8.1,Duration of diabetes,Y,,,continuous,,,,
+Qualifying HbA1c (%),7.2,0.5,7.2,0,Lab values,,,,mean,705,3004410,,Y
+Body mass index (kg/m2 ),30.2,5.6,30.2,5.7,Demographics,,,,mean,705,40762636,,Y
+Systolic blood pressure (mmHg),135,16.9,135,17.1,Lab values,,,,mean,705,3004249,,Y
+Diastolic blood pressure (mmHg),771.1,10.3,77.2,10.6,Lab values,,,,mean,705,3012888,,Y
+eGFR (mL/min/1.73 m2 ),74.9,21.3,74.9,20.9,Lab values,,,,mean,705,3029859,,Y
+eGFR < 50 (mL/min/1.73 m2 ),686,,683,,Lab values,,,,n,705,3029859,covariateValue < 50,
+Urinary albumin:creatinine ratio median (mg/g),10.3,,11.4,,Lab values,,,,median,705,3020682,,Y
+Total cholesterol (mg/dL),166.1,44.8,165.4,45.9,Lab values,,,,mean,705,3027114,,Y
+LDL cholesterol (mg/dL),91.2,63.8,90.7,51.2,Lab values,,,,mean,705,3028437,,Y
+HDL cholesterol (mg/dL),43.5,12,43.4,13,Lab values,,,,mean,705,3007070,,Y
+Triglycerides (mg/dL),166,101,164.8,98.8,Lab values,,,,mean,705,3022192,,Y
+Prior cardiovascular disease,5397,,5466,,Prior cardiovascular disease,,,,n,210,134057,,
+Myocardial infarction,3133,,3122,,Prior cardiovascular disease,,,,n,210,4329847,,
+>50% coronary stenosis,3804,,3883,,Prior cardiovascular disease,,,,n,210,,,
+Prior PCI,2814,,2900,,Prior cardiovascular disease,,,,n,procedure,4283892,,
+CABG,1845,,1819,,Prior cardiovascular disease,,,,n,procedure,4168166,,
+Prior cerebrovascular disease,1806,,1782,,Medical history,,,,n,210,,,
+Prior Peripheral arterial disease,1217,,1216,,Medical history,,,,n,210,,,
+Prior Congestive heart failure,1303,,1340,,Medical history,,,,n,210,319835,,
+NYHA class 3 or higher,171,,202,,Medical history,Y,,,n,210,,,
+Cigarette smoking,0,,0,,Demographics,Y,,,n,,,,
+Metformin,5936,,6030,,Medication history,,,,n,410,1503297,,
+Sulfonylurea,3346,,3299,,Medication history,,,,n,410,21600749,,
+Thiazolidinedione,196,,200,,Medication history,,,,n,410,21600779,,
+Insulin,1724,,1684,,Medication history,,,,n,410,21600713,,
+Beta blocker,4647,,4675,,Medication history,,,,n,410,21601664,,
+ACE inhibitor or ARB,5743,,5812,,Medication history,,,,n,410,21601783;21601801;21601822;21601832,,
+Calcium channel blocker,2444,,2517,,Medication history,,,,n,410,21601744,,
+Diuretic,2976,,3044,,Medication history,,,,n,410,21601461,,
+Aspirin,5764,,5754,,Medication history,,,,n,410,1112807,,
+Other antiplatelet,1593,,1594,,Medication history,Y,,,n,,,,
+Statin,5851,,5868,,Medication history,,,,n,410,21601853,,
+Ezetimibe,386,,375,,Medication history,,,,n,410,1526475,,

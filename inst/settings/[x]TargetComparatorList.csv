@@ -1,0 +1,27 @@
+﻿targetId,comparatorId,design,description,trialName
+122,123,RCT,Population replicated as close as possible to the original RCT,LEADER
+125,126,RCT,Population replicated as close as possible to the original RCT,DECLARE-TIMI_58
+127,128,RCT,Population replicated as close as possible to the original RCT,EMPA-REG_OUTCOME
+129,130,RCT,Population replicated as close as possible to the original RCT,CANVAS
+135,136,RCT,Population replicated as close as possible to the original RCT,CARMELINA
+137,138,RCT,Population replicated as close as possible to the original RCT,TECOS
+139,140,RCT,Population replicated as close as possible to the original RCT,SAVOR-TIMI_53
+141,142,RCT,Population replicated as close as possible to the original RCT,CAROLINA
+117,118,RCT,Population replicated as close as possible to the original RCT,TRITON-TIMI_38
+115,116,RCT,Population replicated as close as possible to the original RCT,PLATO
+107,108,RCT,Population replicated as close as possible to the original RCT,ROCKET-AF
+105,106,RCT,Population replicated as close as possible to the original RCT,ARISTOTLE
+109,110,RCT,Population replicated as close as possible to the original RCT,ENGAGE_AF-TIMI_48
+124,134,Indication,Population of indications for drug,LEADER
+131,134,Indication,Population of indications for drug,DECLARE-TIMI_58
+132,134,Indication,Population of indications for drug,EMPA-REG_OUTCOME
+133,134,Indication,Population of indications for drug,CANVAS
+143,146,Indication,Population of indications for drug,CARMELINA
+144,146,Indication,Population of indications for drug,TECOS
+145,146,Indication,Population of indications for drug,SAVOR-TIMI_53
+143,147,Indication,Population of indications for drug,CAROLINA
+120,121,Indication,Population of indications for drug,TRITON-TIMI_38
+119,121,Indication,Population of indications for drug,PLATO
+112,114,Indication,Population of indications for drug,ROCKET-AF
+111,114,Indication,Population of indications for drug,ARISTOTLE
+113,114,Indication,Population of indications for drug,ENGAGE_AF-TIMI_48

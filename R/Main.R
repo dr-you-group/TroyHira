@@ -91,6 +91,7 @@ execute <- function(connectionDetails,
                     cohortSummaryStatsTable = paste0(cohortTable, "_summary_stats"),
                     cohortCensorStatsTable = paste0(cohortTable, "_censor_stats"),
                     oracleTempSchema = NULL,
+                    troy = TRUE,
                     tempEmulationSchema = getOption("sqlRenderTempEmulationSchema"),
                     verifyDependencies = TRUE,
                     outputFolder,
@@ -143,6 +144,14 @@ execute <- function(connectionDetails,
                                           cohortCensorStatsTable = cohortCensorStatsTable),
                   tempEmulationSchema = tempEmulationSchema,
                   outputFolder = outputFolder)
+  }
+  
+  if (troy) {
+    message("Troy...")
+    executeTroy(cohortDatabaseSchema=cohortDatabaseSchema,
+                 cohortTable=cohortTable,
+                 connectionDetails=connectionDetails,
+                 outputFolder=outputFolder)
   }
   
   # Set doPositiveControlSynthesis to FALSE if you don't want to use synthetic positive controls:

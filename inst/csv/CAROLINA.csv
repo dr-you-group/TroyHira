@@ -1,0 +1,58 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age mean,63.9,9.5,64.2,9.5,Demographics,,3023,3010,mean,2,1,,Y
+Sex male,1838,,1781,,Demographics,,,,n,1,8507,,
+Sex female,1185,,1229,,Demographics,,,,n,1,8532,,
+Race,0,,0,,Demographics,Y,,,n,,,,
+Ethnicity,0,,0,,Demographics,Y,,,n,,,,
+Region,0,,0,,Demographics,Y,,,n,,,,
+Smoking status,0,,0,,Demographics,Y,,,n,,,,
+Vascular disease,1051,,1038,,Cardiovascular risk entry criteria,Y,,,n,,,,
+Microvascular-related organ damage,258,,254,,Cardiovascular risk entry criteria,Y,,,n,,,,
+Age >= 70,566,,592,,Cardiovascular risk entry criteria,,,,n,2,1,covariateValue >= 70,
+Multiple cardiovascular risk factors,1132,,1111,,Cardiovascular risk entry criteria,Y,,,n,,,,
+"Missing cardiovascular risk group category or all entries ""no""",16,,15,,Cardiovascular risk entry criteria,Y,,,n,,,,
+History of heart failure,122,,149,,Medical history,,,,n,210,316139,,
+Atherosclerotic cardiovascular disease-any,1272,,1250,,Atherosclerotic cardiovascular disease,Y,,,n,,,,
+Atherosclerotic cardiovascular disease-Coronary artery disease,968,,937,,Atherosclerotic cardiovascular disease,Y,,,n,,,,
+Atherosclerotic cardiovascular disease-Cerebrovascular disease,371,,356,,Atherosclerotic cardiovascular disease,Y,,,n,,,,
+Atherosclerotic cardiovascular disease-peripheral artery disease,207,,200,,Atherosclerotic cardiovascular disease,Y,,,n,,,,
+History of hypertension,2720,,2698,,Medical history,,,,n,210,320128,,
+Microvascular disease-any,847,,881,,Microvascular disease,,,,n,210,4301699;4242411;4174977,,
+Microvascular disease-diabetic neuropathy,515,,495,,Microvascular disease,,,,n,210,4301699,,
+Microvascular disease-diabetic nephropathy,352,,372,,Microvascular disease,,,,n,210,4242411,,
+Microvascular disease-diabetic retinopathy,212,,236,,Microvascular disease,,,,n,210,4174977,,
+"eGFR (MDRD), ML/min/1.73m2 mean",76.5,19.7,77,19.8,Lab values,,,,mean,705,3049187,,Y
+eGFR (MDRD) >= 90,693,,722,,Lab values,,,,n,705,3049187,covariateValue >= 90,
+eGFR (MDRD) 60-89,1726,,1740,,Lab values,,,,n,705,3049187,covariateValue >= 60 & covariateValue < 90,
+eGFR (MDRD) 30-59,576,,525,,Lab values,,,,n,705,3049187,covariateValue >= 30 & covariateValue < 60,
+eGFR (MDRD) 15-29,13,,13,,Lab values,,,,n,705,3049187,covariateValue >= 15 & covariateValue < 30,
+eGFR (MDRD) < 15,3,,0,,Lab values,,,,n,705,3049187,covariateValue < 15,
+"UACR, median, mg/g",9.7,,9.7,,Lab values,Y,,,median,705,3020682,,Y
+No. (%)c <30,2228,,2234,,Lab values,,,,n,705,3024561,covariateValue < 30,
+No. (%)c 30-300,645,,630,,Lab values,,,,n,705,3024561,covariateValue >= 30 & covariateValue <= 300,
+No. (%)c > 300,134,,124,,Lab values,,,,n,705,3024561,covariateValue < 300,
+Body mass index,30.2,5.2,30,5.1,Demographics,,,,mean,705,40762636,,Y
+"Glycated hemoglobin, mean",7.2,0.6,7.2,0.6,Lab values,,,,mean,705,3027114,,Y
+"Fasting plasma glucose, mg/dL",140,31,140,30,Lab values,,,,mean,705,3004501,,
+"Diabetes duration median, y",6.3,3,6.2,2.9,Lab values,Y,,,continuous,,,,
+Diabetes duration  <= 5y,1224,,1212,,Lab values,Y,,,n,,,,
+"Systolic blood pressure, mm Hg",136,16,136,16,Lab values,,,,mean,705,3004249,,Y
+"Diastolic blood pressure, mm Hg",79,10,79,9,Lab values,,,,mean,705,3012888,,Y
+"Heart rate, /min",71,11,71,10,Lab values,,,,mean,705,3027018,,Y
+"Total cholesterol, mg/dL",177,43,177,45,Lab values,,,,mean,705,3027114,,Y
+"Low-density lipoprotein cholesterol, mg/dL",95,35,95,36,Lab values,,,,mean,705,3028437,,Y
+"High-density lipoprotein cholesterol, mg/dL",48,13,49,13,Lab values,,,,mean,705,3007070,,Y
+"Triglycerides, mg/dL",144,,142,,Lab values,,,,median,705,3022192,,Y
+Metformin,2510,,2510,,Medication history,,,,n,410,21600747,,
+Sulfonylurea,869,,846,,Medication history,,,,n,410,21600749,,
+α-Glucosidase inhibitor,97,,92,,Medication history,,,,n,410,21600775,,
+Glinide,28,,38,,Medication history,,,,n,410,21600790,,
+"No. of background glucose-lowering therapies, No. (%)",0,,0,,Medication history,Y,,,n,,,,
+"≥1 Antihypertensive medication, No. (%)",2662,,2682,,Medication history,,,,n,410,21600381,,
+ACE inhibitors,1330,,1342,,Medication history,,,,n,410,21601783;21601801,,
+ARBs,956,,928,,Medication history,,,,n,410,21601822;21601832,,
+Beta-blockers,1193,,1159,,Medication history,,,,n,410,21601664,,
+Diuretics,891,,885,,Medication history,,,,n,410,21601461,,
+Calcium antagonists,1099,,1137,,Medication history,,,,n,410,21601744,,
+Aspirin,1410,,1413,,Medication history,,,,n,410,1112807,,
+Statin,1913,,1987,,Medication history,,,,n,410,21601853,,

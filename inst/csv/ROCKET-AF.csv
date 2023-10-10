@@ -1,0 +1,30 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age median,73,,73,,Demographics,,7131,7133,median,2,1,,Y
+Age IQR,65-78,,65-78,,Demographics,,,,IQR,2,1,,
+Female sex,2831,,2832,,Demographics,,,,n,1,8532,,
+BMI median,28.3,,28.1,,Demographics,,,,median,705,40762636,,Y
+BMI IQR,25.2-32.1,,25.1-31.8,,Demographics,,,,IQR,705,40762636,,
+Blood pressure systolic median,130,,130,,Blood pressure — mm Hg,,,,median,705,3004249,,Y
+Blood pressure systolic IQR,120-140,,120-140,,Blood pressure — mm Hg,,,,IQR,705,3004249,,
+Blood pressure diastolic median,80,,80,,Blood pressure — mm Hg,,,,median,705,3012888,,Y
+Blood pressure diastolic IQR,70-85,,70-85,,Blood pressure — mm Hg,,,,IQR,705,3012888,,
+Persistent atrial fibrillation,5786,,5762,,Type of atrial fibrillation ,Y,,,n,,,,
+Paroxysmal atrial fibrillation,1245,,1269,,Type of atrial fibrillation ,,,,n,210,4154290,,
+New diagnosed or new onset atrial fibrillation,100,,102,,Type of atrial fibrillation ,Y,,,n,,,,
+Aspirin,2586,,2619,,Previous medication use,,,,n,410,1112807,,
+Vitamkin K antagonist,4443,,4461,,Previous medication use,,,,n,410,21600962,,
+CHADS2 score mean,3.48,0.94,3.46,0.95,CHADS2 risk of stroke,,,,mean,904,1,,Y
+CHADS2 score 2,925,,934,,CHADS2 risk of stroke,,,,n,904,1,covariateValue == 2,
+CHADS2 score 3,3058,,3158,,CHADS2 risk of stroke,,,,n,904,1,covariateValue == 3,
+CHADS2 score 4,2092,,1999,,CHADS2 risk of stroke,,,,n,904,1,covariateValue == 4,
+CHADS2 score 5,932,,881,,CHADS2 risk of stroke,,,,n,904,1,covariateValue == 5,
+CHADS2 score 6,123,,159,,CHADS2 risk of stroke,,,,n,904,1,covariateValue == 6,
+"Stroke, systemic embolism, or TIA",3916,,3895,,Coexisting condition,,,,n,210,312337;372924;375557;376713;432923;439847;441874;443454;4148906;43530727;373503,,
+Congestive heart failure,4467,,4441,,Coexisting condition,,,,n,210,319835,,
+Hypertension,6436,,6474,,Coexisting condition,,,,n,210,320128,,
+Diabetes mellitus,2878,,2817,,Coexisting condition,,,,n,210,201820,,
+Previous myocardial infarction,1182,,1286,,Coexisting condition,,,,n,210,4329847,,
+Peripheral vascular disease,401,,438,,Coexisting condition,,,,n,210,3654996,,
+Chronic obstructive pulmonary disease,754,,743,,Coexisting condition,,,,n,210,4209097,,
+Creatinine clearance median — ml/min ,67,,67,,Creatinine clearance — ml/min,,,,median,705,3027108,,Y
+Creatinine clearance IQR — ml/min ,52-88,,52-86,,Creatinine clearance — ml/min,,,,IQR,705,3027108,,

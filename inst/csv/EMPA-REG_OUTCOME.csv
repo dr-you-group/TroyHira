@@ -1,0 +1,59 @@
+﻿characteristics,target,targetSd,comparator,comparatorSd,tag,isNa,targetSize,comparatorSize,statistics,analysisId,conceptIds,hasValue,summary
+Age mean,63.1,8.6,63.2,8.8,Demographics,,4687,2333,mean,2,1,,Y
+Male no.,3336,,1680,,Demographics,,,,n,1,8507,,
+Race no.,0,,0,,Demographics,Y,,,n,,,,
+Ethnicity no.,0,,0,,Demographics,Y,,,n,,,,
+Region no.,0,,0,,Demographics,Y,,,n,,,,
+Weight mean,86.2,18.9,86.6,19.1,Demographics,,,,mean,705,3025315,,Y
+Body mass index mean,30.6,5.3,30.7,5.2,Demographics,,,,mean,705,40762636,,Y
+Coronary artery disease,4657,,2307,,CV risk factor,,,,n,210,4187067,,
+CV risk factor,3545,,1763,,CV risk factor,Y,,,n,,,,
+Multi-vessel coronary artery disease,2179,,1100,,CV risk factor,,,,n,210,4155007;4108673;4124682,,
+History of myocardial infarction,2190,,1083,,CV risk factor,,,,n,210,4329847,,
+Coronary artery bypass graft,1175,,563,,CV risk factor,,,,n,procedure,4168166,,
+History of stroke,1084,,553,,CV risk factor,,,,n,210,372924;375557;376713;432923;439847;441874;443454;4148906;43530727,,
+Peripheral artery disease ,982,,479,,CV risk factor,,,,n,210,3654996,,
+Single vessel coronary artery disease,498,,238,,CV risk factor,,,,n,210,4111393,,
+Cardiac failure,462,,244,,CV risk factor,,,,n,210,316139,,
+Glycated hemoglobin – %,8.07,0.85,8.08,0.84,Lab values,,,,mean,705,3004410,,Y
+Time since diagnosis of type 2 diabetes – no. (%),0,,0,,Time since diagnosis of type 2 diabetes,Y,,,continuous,,,,
+Metformin,3459,,1734,,Medication history,,,,n,410,1503297,,
+Insulin,2252,,1135,,Medication history,,,,n,410,21600713,,
+Insulin median daily dose - IU,0,,0,,Medication history,Y,,,continuous,,,,
+Sulfonylurea ,2014,,992,,Medication history,,,,n,410,21600749,,
+Dipeptidyl peptidase -4 inhibitor,529,,267,,Medication history,,,,n,410,21600783,,
+Thiazolidinedione ,198,,101,,Medication history,,,,n,410,21600779,,
+Glucagon -like peptide -1 agonist,126,,70,,Medication history,,,,n,410,1123618,,
+Monotherapy,0,,0,,Medication history,Y,,,n,,,,
+Dual therapy,0,,0,,Medication history,Y,,,n,,,,
+Anti -hypertensive therapy – no. (%),4446,,2221,,Medication history,Y,,,n,,,,
+ACEi or ARBs,3798,,1868,,Medication history,,,,n,410,21601783;21601801;21601822;21601832,,
+Beta-blockers,3056,,1498,,Medication history,,,,n,410,21601664,,
+Diuretics,2047,,988,,Medication history,,,,n,410,21601461,,
+Calcium channel blockers,1529,,788,,Medication history,,,,n,410,21601744,,
+Mineralocorticoid receptor antagonists,305,,136,,Medication history,,,,n,410,21601533,,
+Renin inhibitors,27,,19,,Medication history,,,,n,410,21601849,,
+Other,0,,0,,Medication history,Y,,,n,,,,
+Lipid -lowering therapy – no. (%),3820,,1864,,Medication history,Y,,,n,,,,
+Statins,3630,,1773,,Medication history,,,,n,410,21601853,,
+Fibrates,431,,199,,Medication history,,,,n,410,21601864,,
+Ezetimibe,189,,81,,Medication history,,,,n,410,1526475,,
+Niacin,91,,35,,Medication history,,,,n,410,19018419,,
+Other,0,,0,,Medication history,Y,,,n,,,,
+Anti -coagulants – no. (%),4162,,2090,,Medication history,Y,,,n,,,,
+Acetylsalicylic acid,3876,,1927,,Medication history,,,,n,410,21604305,,
+Clopidogrel,494,,249,,Medication history,,,,n,410,21600989,,
+Vitamin K antagonists,266,,156,,Medication history,,,,n,410,21600962,,
+Systolic blood pressure – mmHg,135.3,16.9,135.8,17.2,Lab values,,,,mean,705,3004249,,Y
+Diastolic blood pressure – mmHg,76.6,9.7,76.8,10.1,Lab values,,,,mean,705,3012888,,Y
+Total cholesterol – mg/dL,165.5,44.2,161.9,43.1,Lab values,,,,mean,705,3027114,,Y
+Low density lipoprotein cholesterol – mg/dL,85.9,36,84.9,35.3,Lab values,,,,mean,705,3007070,,Y
+High density lipoprotein cholesterol – mg/dL,44.6,11.9,44,11.3,Lab values,,,,mean,705,3028437,,Y
+Triglycerides – mg/dL,170.5,129.7,170.7,121.2,Lab values,,,,mean,705,3022192,,Y
+Estimated glomerular filtration rate – mL/min/1.73m2,74.2,21.6,73.8,21.1,Lab values,,,,mean,705,3029859,,Y
+Estimated glomerular filtration rate ≥90 mL/min/1.73m2– no. (%),1050,,488,,Lab values,,,,n,705,3029859,covariateValue >= 90,
+Estimated glomerular filtration rate 60 to <90 mL/min/1.73m2– no. (%),2423,,1238,,Lab values,,,,n,705,3029859,covariateValue >= 60 & covariateValue <= 90,
+Estimated glomerular filtration rate <60 mL/min/1.73m2– no. (%),1212,,607,,Lab values,,,,n,705,3029859,covariateValue < 60,
+Urine albumin-to-creatinine ratio <30 mg/g – no. (%),2789,,1382,,Lab values,,,,n,705,3020682,covariateValue < 30,
+Urine albumin-to-creatinine ratio 30 to 300 mg/g– no. (%),1338,,675,,Lab values,,,,n,705,3020682,covariateValue >= 30 & covariateValue <= 300,
+Urine albumin-to-creatinine ratio >300mg/g – no. (%),509,,260,,Lab values,,,,n,705,3020682,covariateValue > 300,

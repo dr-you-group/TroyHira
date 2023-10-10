@@ -1,0 +1,27 @@
+﻿targetId,comparatorId,design,description,trialName
+1787581,1787582,RCT,Population replicated as close as possible to the original RCT,LEADER
+1787585,1787586,RCT,Population replicated as close as possible to the original RCT,DECLARE-TIMI_58
+1787589,1787590,RCT,Population replicated as close as possible to the original RCT,EMPA-REG_OUTCOME
+1787593,1787594,RCT,Population replicated as close as possible to the original RCT,CANVAS
+1787607,1787608,RCT,Population replicated as close as possible to the original RCT,CARMELINA
+1787597,1787598,RCT,Population replicated as close as possible to the original RCT,TECOS
+1787603,1787604,RCT,Population replicated as close as possible to the original RCT,SAVOR-TIMI_53
+1787609,1787610,RCT,Population replicated as close as possible to the original RCT,CAROLINA
+1787613,1787614,RCT,Population replicated as close as possible to the original RCT,TRITON-TIMI_38
+1787617,1787620,RCT,Population replicated as close as possible to the original RCT,PLATO
+1787621,1787622,RCT,Population replicated as close as possible to the original RCT,ROCKET-AF
+1787626,1787627,RCT,Population replicated as close as possible to the original RCT,ARISTOTLE
+1787630,1787631,RCT,Population replicated as close as possible to the original RCT,ENGAGE_AF-TIMI_48
+1787583,1787584,Indication,Population of indications for drug,LEADER
+1787587,1787588,Indication,Population of indications for drug,DECLARE-TIMI_58
+1787591,1787592,Indication,Population of indications for drug,EMPA-REG_OUTCOME
+1787595,1787596,Indication,Population of indications for drug,CANVAS
+1787601,1787602,Indication,Population of indications for drug,CARMELINA
+1787599,1787600,Indication,Population of indications for drug,TECOS
+1787605,1787606,Indication,Population of indications for drug,SAVOR-TIMI_53
+1787611,1787612,Indication,Population of indications for drug,CAROLINA
+1787615,1787616,Indication,Population of indications for drug,TRITON-TIMI_38
+1787619,1787618,Indication,Population of indications for drug,PLATO
+1787624,1787625,Indication,Population of indications for drug,ROCKET-AF
+1787628,1787629,Indication,Population of indications for drug,ARISTOTLE
+1787632,1787633,Indication,Population of indications for drug,ENGAGE_AF-TIMI_48
