@@ -147,7 +147,7 @@ execute <- function(connectionDetails,
   }
   
   if (troy) {
-    message("Troy...")
+    message("Running TROY...")
     executeTroy(cohortDatabaseSchema=cohortDatabaseSchema,
                  cohortTable=cohortTable,
                  connectionDetails=connectionDetails,
