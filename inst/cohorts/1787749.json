@@ -242,10 +242,90 @@
       }]},
       "name": "[TROY intervention] Warfarin",
       "id": 162
+    },
+    {
+      "expression": {"items": [
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 1310149,
+            "STANDARD_CONCEPT": "S",
+            "CONCEPT_CODE": "11289",
+            "VOCABULARY_ID": "RxNorm",
+            "CONCEPT_NAME": "warfarin",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "CONCEPT_CLASS_ID": "Ingredient",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        },
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 21600965,
+            "STANDARD_CONCEPT": "C",
+            "CONCEPT_CODE": "B01AA03",
+            "VOCABULARY_ID": "ATC",
+            "CONCEPT_NAME": "warfarin; systemic",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Classification",
+            "CONCEPT_CLASS_ID": "ATC 5th",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        }
+      ]},
+      "name": "[TROY intervention] Warfarin (ATC)",
+      "id": 163
+    },
+    {
+      "expression": {"items": [
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 40241331,
+            "STANDARD_CONCEPT": "S",
+            "CONCEPT_CODE": "1114195",
+            "VOCABULARY_ID": "RxNorm",
+            "CONCEPT_NAME": "rivaroxaban",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "CONCEPT_CLASS_ID": "Ingredient",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        },
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 43534761,
+            "STANDARD_CONCEPT": "C",
+            "CONCEPT_CODE": "B01AF01",
+            "VOCABULARY_ID": "ATC",
+            "CONCEPT_NAME": "rivaroxaban; oral",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Classification",
+            "CONCEPT_CLASS_ID": "ATC 5th",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        }
+      ]},
+      "name": "[TROY intervention] Rivaroxaban (ATC)",
+      "id": 164
     }
   ],
   "EndStrategy": {"CustomEra": {
-    "DrugCodesetId": 162,
+    "DrugCodesetId": 163,
     "DaysSupplyOverride": null,
     "GapDays": 30,
     "Offset": 0
@@ -255,7 +335,7 @@
     "OccurrenceEndDate": null,
     "CorrelatedCriteria": null,
     "DrugSourceConcept": null,
-    "CodesetId": 128,
+    "CodesetId": 164,
     "DrugTypeExclude": false,
     "Quantity": null,
     "DrugType": null,
@@ -474,7 +554,7 @@
         "Value": 18
       },
       "GapDays": null,
-      "CodesetId": 162,
+      "CodesetId": 163,
       "AgeAtEnd": null,
       "First": null,
       "Gender": null,

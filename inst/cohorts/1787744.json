@@ -882,10 +882,90 @@
       }]},
       "name": "[TROY intervention] Clopidogrel",
       "id": 70
+    },
+    {
+      "expression": {"items": [
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 1322184,
+            "STANDARD_CONCEPT": "S",
+            "CONCEPT_CODE": "32968",
+            "VOCABULARY_ID": "RxNorm",
+            "CONCEPT_NAME": "clopidogrel",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "CONCEPT_CLASS_ID": "Ingredient",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        },
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 21600989,
+            "STANDARD_CONCEPT": "C",
+            "CONCEPT_CODE": "B01AC04",
+            "VOCABULARY_ID": "ATC",
+            "CONCEPT_NAME": "clopidogrel; oral",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Classification",
+            "CONCEPT_CLASS_ID": "ATC 5th",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        }
+      ]},
+      "name": "[TROY intervention] Clopidogrel (ATC)",
+      "id": 71
+    },
+    {
+      "expression": {"items": [
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 40241186,
+            "STANDARD_CONCEPT": "S",
+            "CONCEPT_CODE": "1116632",
+            "VOCABULARY_ID": "RxNorm",
+            "CONCEPT_NAME": "ticagrelor",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "CONCEPT_CLASS_ID": "Ingredient",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        },
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 40252640,
+            "STANDARD_CONCEPT": "C",
+            "CONCEPT_CODE": "B01AC24",
+            "VOCABULARY_ID": "ATC",
+            "CONCEPT_NAME": "ticagrelor; oral",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Classification",
+            "CONCEPT_CLASS_ID": "ATC 5th",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        }
+      ]},
+      "name": "[TROY intervention] Ticagrelor (ATC)",
+      "id": 72
     }
   ],
   "EndStrategy": {"CustomEra": {
-    "DrugCodesetId": 70,
+    "DrugCodesetId": 71,
     "DaysSupplyOverride": null,
     "GapDays": 7,
     "Offset": 0
@@ -895,7 +975,7 @@
     "OccurrenceEndDate": null,
     "CorrelatedCriteria": null,
     "DrugSourceConcept": null,
-    "CodesetId": 55,
+    "CodesetId": 72,
     "DrugTypeExclude": false,
     "Quantity": null,
     "DrugType": null,
@@ -974,7 +1054,7 @@
       "OccurrenceCount": null,
       "AgeAtStart": null,
       "GapDays": null,
-      "CodesetId": 69,
+      "CodesetId": 71,
       "AgeAtEnd": null,
       "First": null,
       "Gender": null,

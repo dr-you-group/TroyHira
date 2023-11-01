@@ -7,11 +7,11 @@ CREATE TABLE #Codesets (
 INSERT INTO #Codesets (codeset_id, concept_id)
 SELECT 85 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
 ( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (43013024)
+  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (43013024,43534762)
 UNION  select c.concept_id
   from @vocabulary_database_schema.CONCEPT c
   join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (43013024)
+  and ca.ancestor_concept_id in (43013024,43534762)
   and c.invalid_reason is null
 
 ) I
@@ -73,7 +73,12 @@ UNION  select c.concept_id
 ) C UNION ALL 
 SELECT 118 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
 ( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (1310149)
+  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (1310149,21600965)
+UNION  select c.concept_id
+  from @vocabulary_database_schema.CONCEPT c
+  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
+  and ca.ancestor_concept_id in (1310149,21600965)
+  and c.invalid_reason is null
 
 ) I
 ) C UNION ALL 
@@ -84,6 +89,28 @@ UNION  select c.concept_id
   from @vocabulary_database_schema.CONCEPT c
   join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
   and ca.ancestor_concept_id in (313217)
+  and c.invalid_reason is null
+
+) I
+) C UNION ALL 
+SELECT 120 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
+( 
+  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (1310149,21600965)
+UNION  select c.concept_id
+  from @vocabulary_database_schema.CONCEPT c
+  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
+  and ca.ancestor_concept_id in (1310149,21600965)
+  and c.invalid_reason is null
+
+) I
+) C UNION ALL 
+SELECT 121 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
+( 
+  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (43013024,43534762)
+UNION  select c.concept_id
+  from @vocabulary_database_schema.CONCEPT c
+  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
+  and ca.ancestor_concept_id in (43013024,43534762)
   and c.invalid_reason is null
 
 ) I
@@ -111,7 +138,7 @@ from
 (
   select de.* 
   FROM @cdm_database_schema.DRUG_ERA de
-where de.drug_concept_id in (SELECT concept_id from  #Codesets where codeset_id = 118)
+where de.drug_concept_id in (SELECT concept_id from  #Codesets where codeset_id = 120)
 ) C
 JOIN @cdm_database_schema.PERSON P on C.person_id = P.person_id
 WHERE C.drug_era_start_date >= DATEFROMPARTS(2012, 12, 28)
@@ -149,7 +176,7 @@ from
 (
   select de.* 
   FROM @cdm_database_schema.DRUG_ERA de
-where de.drug_concept_id in (SELECT concept_id from  #Codesets where codeset_id = 118)
+where de.drug_concept_id in (SELECT concept_id from  #Codesets where codeset_id = 120)
 ) C
 JOIN @cdm_database_schema.PERSON P on C.person_id = P.person_id
 WHERE C.drug_era_start_date >= DATEFROMPARTS(2012, 12, 28)
@@ -185,7 +212,7 @@ from
 (
   select de.* 
   FROM @cdm_database_schema.DRUG_ERA de
-where de.drug_concept_id in (SELECT concept_id from  #Codesets where codeset_id = 118)
+where de.drug_concept_id in (SELECT concept_id from  #Codesets where codeset_id = 120)
 ) C
 JOIN @cdm_database_schema.PERSON P on C.person_id = P.person_id
 WHERE C.drug_era_start_date >= DATEFROMPARTS(2012, 12, 28)
@@ -401,14 +428,14 @@ FROM (
 	select de.PERSON_ID, DRUG_EXPOSURE_START_DATE, COALESCE(DRUG_EXPOSURE_END_DATE, DATEADD(day,DAYS_SUPPLY,DRUG_EXPOSURE_START_DATE), DATEADD(day,1,DRUG_EXPOSURE_START_DATE)) as DRUG_EXPOSURE_END_DATE 
 	FROM @cdm_database_schema.DRUG_EXPOSURE de
 	JOIN ctePersons p on de.person_id = p.person_id
-	JOIN #Codesets cs on cs.codeset_id = 118 AND de.drug_concept_id = cs.concept_id
+	JOIN #Codesets cs on cs.codeset_id = 120 AND de.drug_concept_id = cs.concept_id
 
 	UNION ALL
 
 	select de.PERSON_ID, DRUG_EXPOSURE_START_DATE, COALESCE(DRUG_EXPOSURE_END_DATE, DATEADD(day,DAYS_SUPPLY,DRUG_EXPOSURE_START_DATE), DATEADD(day,1,DRUG_EXPOSURE_START_DATE)) as DRUG_EXPOSURE_END_DATE 
 	FROM @cdm_database_schema.DRUG_EXPOSURE de
 	JOIN ctePersons p on de.person_id = p.person_id
-	JOIN #Codesets cs on cs.codeset_id = 118 AND de.drug_source_concept_id = cs.concept_id
+	JOIN #Codesets cs on cs.codeset_id = 120 AND de.drug_source_concept_id = cs.concept_id
 ) E
 ;
 
@@ -486,7 +513,7 @@ from
 (
   select de.* 
   FROM @cdm_database_schema.DRUG_EXPOSURE de
-JOIN #Codesets cs on (de.drug_concept_id = cs.concept_id and cs.codeset_id = 85)
+JOIN #Codesets cs on (de.drug_concept_id = cs.concept_id and cs.codeset_id = 121)
 ) C
 
 

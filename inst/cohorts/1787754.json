@@ -4851,10 +4851,90 @@
       ]},
       "name": "[TROY drug] fluranes or propofol",
       "id": 166
+    },
+    {
+      "expression": {"items": [
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 1123891,
+            "STANDARD_CONCEPT": "C",
+            "CONCEPT_CODE": "B01AF03",
+            "VOCABULARY_ID": "ATC",
+            "CONCEPT_NAME": "edoxaban; oral",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Classification",
+            "CONCEPT_CLASS_ID": "ATC 5th",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        },
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 45892847,
+            "STANDARD_CONCEPT": "S",
+            "CONCEPT_CODE": "1599538",
+            "VOCABULARY_ID": "RxNorm",
+            "CONCEPT_NAME": "edoxaban",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "CONCEPT_CLASS_ID": "Ingredient",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        }
+      ]},
+      "name": "[TROY intervention] Edoxaban (ATC)",
+      "id": 167
+    },
+    {
+      "expression": {"items": [
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 1310149,
+            "STANDARD_CONCEPT": "S",
+            "CONCEPT_CODE": "11289",
+            "VOCABULARY_ID": "RxNorm",
+            "CONCEPT_NAME": "warfarin",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Standard",
+            "CONCEPT_CLASS_ID": "Ingredient",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        },
+        {
+          "isExcluded": false,
+          "concept": {
+            "INVALID_REASON_CAPTION": "Valid",
+            "CONCEPT_ID": 21600965,
+            "STANDARD_CONCEPT": "C",
+            "CONCEPT_CODE": "B01AA03",
+            "VOCABULARY_ID": "ATC",
+            "CONCEPT_NAME": "warfarin; systemic",
+            "DOMAIN_ID": "Drug",
+            "STANDARD_CONCEPT_CAPTION": "Classification",
+            "CONCEPT_CLASS_ID": "ATC 5th",
+            "INVALID_REASON": "V"
+          },
+          "includeMapped": false,
+          "includeDescendants": true
+        }
+      ]},
+      "name": "[TROY intervention] Warfarin (ATC)",
+      "id": 168
     }
   ],
   "EndStrategy": {"CustomEra": {
-    "DrugCodesetId": 160,
+    "DrugCodesetId": 167,
     "DaysSupplyOverride": null,
     "GapDays": 30,
     "Offset": 0
@@ -4864,7 +4944,7 @@
     "OccurrenceEndDate": null,
     "CorrelatedCriteria": null,
     "DrugSourceConcept": null,
-    "CodesetId": 161,
+    "CodesetId": 168,
     "DrugTypeExclude": false,
     "Quantity": null,
     "DrugType": null,
@@ -7270,7 +7350,7 @@
         "Value": 21
       },
       "GapDays": null,
-      "CodesetId": 127,
+      "CodesetId": 167,
       "AgeAtEnd": null,
       "First": null,
       "Gender": null,
