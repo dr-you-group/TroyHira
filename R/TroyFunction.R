@@ -24,43 +24,45 @@ executeTroy <- function(cohortDatabaseSchema, cohortTable, connectionDetails, ou
   colnames(referenceRct) = c("targetId", "comparatorId", "design", "description", "trialName")
   trialNames <- unique(referenceRct$trialName)
   
-  # for loop
   for (i in 1:length(trialNames)) {
     trial <- unique(trialNames)[i]
     idx <- which(referenceRct[,"trialName"] == trial)
-    specificationRct <- read.csv(file.path(system.file("csv", paste0(trial, ".csv"), package = "TROY")), sep = ",")
+    
+    specificationRct <- read.csv(file.path(getwd(), "inst", "csv", paste0(trial, ".csv")))
     colnames(specificationRct) <- c("characteristics", "target", "targetSd", "comparator", "comparatorSd", "tag", "isNa", "targetSize", "comparatorSize", "statistics", "analysisId", "covariateIds", "hasValue", "summary")
     specificationRct <- subset(specificationRct, specificationRct$isNa != 'Y')
     specificationRct[is.na(specificationRct)]<-""
-  
+    
     connection <- DatabaseConnector::connect(connectionDetails)
     cohort <- Andromeda::andromeda()
     sql <- "select * from @cohortDatabaseSchema.@cohortTable"
     sql <- SqlRender::render(sql, cohortDatabaseSchema=cohortDatabaseSchema, cohortTable=cohortTable)
     DatabaseConnector::querySqlToAndromeda(connection, sql, andromeda = cohort, andromedaTableName = "cohort")
-  
+    
     tc <- referenceRct[idx[1],c(1,2)]
     targetNumber <- tc[1,1]
-    #targetNumber <- 105
     comparatorNumber <- tc[1,2]
-    #comparatorNumber <- 106
     targetCohort <- cohort$cohort %>% filter(.data$COHORT_DEFINITION_ID == targetNumber) %>% mutate(treatment = 1)
     comparatorCohort <- cohort$cohort %>% filter(.data$COHORT_DEFINITION_ID == comparatorNumber) %>% mutate(treatment = 0)
-    population <- comparatorCohort %>% union(targetCohort)
-    #population <- rename(population, rowId = SUBJECT_ID)
-    sizeOE <- data.frame(treatment = -1, n = population %>% summarise(n = n_distinct(.data$subject_id)))
+    population <- targetCohort %>% union(comparatorCohort)
+    keepFirst  <- population %>%
+      group_by(subject_id) %>%
+      filter(cohort_start_date == min(cohort_start_date))
+    
+    sizeOE <- data.frame(treatment = -1, n = keepFirst %>% tally() %>% summarise(n = n()))
     sizeOE <- rbind(sizeOE, data.frame(population %>% group_by(.data$treatment) %>% tally()))
-  
-    covariateSettings <- troyCreateCovariateSettings(specificationRct, prespecAnalyses=prespecAnalyses)
-    covariates <- FeatureExtraction::getDbCovariateData(connectionDetails = connectionDetails,
+    
+    covariateSettings <- troyCreateCovariateSettings(specificationRct)
+    covariates <- getDbCovariateData(connectionDetails = connectionDetails,
                                      cdmDatabaseSchema = cdmDatabaseSchema,
                                      cohortDatabaseSchema = cohortDatabaseSchema,
                                      cohortTable = cohortTable,
                                      cohortId = c(targetNumber, comparatorNumber),
                                      covariateSettings = covariateSettings)
+    
     # covariates$covariates <- covariates$covariates %>% left_join(population, by=("rowId"), copy = TRUE)
     covariates$covariates <- covariates$covariates %>% left_join(covariates$covariateRef)
-  
+    
     statisticsPooled <- covariates$covariates %>%
       group_by(.data$covariateId) %>%
       summarise(conceptId = .data$conceptId,
@@ -72,82 +74,141 @@ executeTroy <- function(cohortDatabaseSchema, cohortTable, connectionDetails, ou
                 min = min(as.numeric(.data$covariateValue), na.rm = TRUE),
                 max = max(as.numeric(.data$covariateValue), na.rm = TRUE)
       ) %>%
-    mutate(sd = sqrt(abs(.data$sumSqr - .data$mean^2)))
-  
+      mutate(sd = sqrt((.data$sumSqr - (.data$sum^2 / .data$n)) / .data$n))
+    
     df <- data.frame()
+    df2 <- data.frame()
     for (idx in 1:nrow(specificationRct)) {
       print(idx)
       print(specificationRct$characteristics[idx])
-        conceptIds <- as.numeric(strsplit(as.character(specificationRct$covariateIds[idx]), ";")[[1]])
-        analysisId <- as.numeric(specificationRct$analysisId[idx])
-        covariateIds <- paste0(conceptIds, sprintf("%03d", analysisId))
-        # summary = Y
-        if (specificationRct$summary[idx] == "Y") {
-          if (substr(analysisId, 1, 1) == 7){
-            t <- data.frame(statisticsPooled %>% filter(conceptId %in% conceptIds))
-            t <- t[which.max(t$n), c(specificationRct$statistics[idx])]
-            if (is.null(nrow(t))) {t <- 0}
+      conceptIds <- as.numeric(strsplit(as.character(specificationRct$covariateIds[idx]), ";")[[1]])
+      analysisId <- as.numeric(specificationRct$analysisId[idx])
+      covariateIds <- paste0(conceptIds, sprintf("%03d", analysisId))
+      # summary = Y
+      if (specificationRct$summary[idx] == "Y") {
+        if (substr(analysisId, 1, 1) == 7){
+          t <- data.frame(statisticsPooled %>% filter(conceptId %in% conceptIds))
+          maxCovariateId <- t[which.max(t$n),1]
+          t <- data.frame(statisticsPooled %>% filter(covariateId %in% maxCovariateId))
+          if (nrow(t)==0) {
+            t <- 0
+            sd <- 0
           } else {
-            t <- data.frame(statisticsPooled %>% filter(covariateId %in% covariateIds))[,c(specificationRct$statistics[idx])]
-          }
-          t <- as.numeric(t)
-          if (!is.numeric(t)){
-            t <- data.frame(statisticsPooled %>% filter(conceptId %in% conceptIds))[,c(specificationRct$statistics[idx])]
+            t <- t %>% select(specificationRct$statistics[idx])
             t <- as.numeric(t)
-          }
-        }
-        if (!specificationRct$summary[idx]=="Y"){
-          if (specificationRct$hasValue[idx]==""){
-            t <- data.frame(covariates$covariates %>%
-              filter(.data$covariateId %in% covariateIds) %>%
-              summarise(n = n_distinct(.data$rowId)))
-            t <- as.numeric(t)
-          } else {
-            #if (nchar(covariateIds) > 3) {
-            if (substr(analysisId, 1, 1) == 7) {
-              t <- data.frame(covariates$covariates %>%
-                                filter(.data$conceptId %in% conceptIds) %>%
-                                filter(rlang::parse_expr(paste0(specificationRct[idx,"hasValue"]))) %>%
-                                summarise(n = n_distinct(.data$rowId)))
-              t <- as.numeric(t)
-            } else {
-              t <- data.frame(covariates$covariates %>%
-                                filter(.data$covariateId %in% covariateIds) %>%
-                                filter(rlang::parse_expr(paste0(specificationRct[idx,"hasValue"]))) %>%
-                                summarise(n = n_distinct(.data$rowId)))
-              t <- as.numeric(t)
-            }
-          }
-        }
-        # Only IQR
-        if (specificationRct$statistics[idx]=="IQR") {
-          t <- summary(
+            if(specificationRct$statistics[idx]=="median") {
+              sd <- summary(
                 data.frame(
                   covariates$covariates %>%
-                    filter(.data$covariateId %in% covariateIds))$covariateValue
-                )
-          t <- as.numeric(t)
-          if(is.na(t[1] > 0)){
-            t <- summary(
+                    filter(.data$covariateId %in% maxCovariateId))$covariateValue
+              )
+              sd <- as.numeric(sd)
+              sd <- (paste0(sd[2], "–", sd[5]))} else {sd <- data.frame(statisticsPooled %>% filter(covariateId %in% maxCovariateId))[, c("sd")]}}
+        } else {
+          t <- data.frame(statisticsPooled %>% filter(covariateId %in% covariateIds))[,c(specificationRct$statistics[idx])]
+          if(specificationRct$statistics[idx]=="median"){
+            sd <- summary(
               data.frame(
                 covariates$covariates %>%
-                  filter(.data$conceptId %in% conceptIds))$covariateValue
+                  filter(.data$covariateId %in% covariateIds))$covariateValue
             )
-            t <- as.numeric(t)
-          }
-          #paste0(t[2], "–", t[5])
-          t <- (paste0(t[2], "–", t[5]))
+            sd <- as.numeric(sd)
+            sd <- (paste0(sd[2], "–", sd[5]))} else {sd <- data.frame(statisticsPooled %>% filter(covariateId %in% covariateIds))[,"sd"]}
         }
-        print(t)
-        df <- rbind(df, t)
-        t <- NA
+      }
+      
+      #t <- data.frame(statisticsPooled %>% filter(conceptId %in% conceptIds))[,c(specificationRct$statistics[idx])]
+      #t <- as.numeric(t)
+      
+      # summary NA, hasValue NA, eg. count
+      if (!specificationRct$summary[idx]=="Y"){
+        if (specificationRct$hasValue[idx]==""){
+          t <- data.frame(covariates$covariates %>%
+                            filter(.data$covariateId %in% covariateIds) %>%
+                            summarise(n = n_distinct(.data$rowId)))
+          t <- as.numeric(t)
+          sd <- (t / sizeOE[sizeOE[,"treatment"] < 0,"n"]) * 100
+        } else {
+          #if (nchar(covariateIds) > 3) {
+          if (substr(analysisId, 1, 1) == 7) {
+            t <- data.frame(covariates$covariates %>%
+                              filter(.data$conceptId %in% conceptIds) %>%
+                              filter(rlang::parse_expr(paste0(specificationRct[idx,"hasValue"]))) %>%
+                              summarise(n = n_distinct(.data$rowId)))
+            t <- as.numeric(t)
+            sd <- (t / sizeOE[sizeOE[,"treatment"] < 0,"n"]) * 100
+          } else {
+            t <- data.frame(covariates$covariates %>%
+                              filter(.data$covariateId %in% covariateIds) %>%
+                              filter(rlang::parse_expr(paste0(specificationRct[idx,"hasValue"]))) %>%
+                              summarise(n = n_distinct(.data$rowId)))
+            t <- as.numeric(t)
+            sd <- (t / sizeOE[sizeOE[,"treatment"] < 0,"n"]) * 100
+          }
+        }
+      }
+      
+      # Only IQR
+      if (specificationRct$statistics[idx]=="IQR") {
+        #covariateIds <- c(1002)
+        t <- summary(
+          data.frame(
+            covariates$covariates %>%
+              filter(.data$covariateId %in% covariateIds))$covariateValue
+        )
+        t <- as.numeric(t)
+        sd <- NA
+        if(is.na(t[1] > 0)){
+          t <- summary(
+            data.frame(
+              covariates$covariates %>%
+                filter(.data$conceptId %in% conceptIds))$covariateValue
+          )
+          t <- as.numeric(t)
+        }
+        #paste0(t[2], "–", t[5])
+        t <- (paste0(t[2], "–", t[5]))
+        sd <- NA
+      }
+      print(t)
+      df <- rbind(df, t)
+      df2 <- rbind(df2, sd)
+      t <- NA
+      sd <- NA
     }
     specificationRct$pooledTroy <- df[,1]
+    specificationRct$pooledTroySd <- df2[,1]
     outputCsv <- file.path(outputFolder, paste0(trial, "Troy.csv"))
-    write.csv(specificationRct, outputCsv)
+    output <- read.csv(file.path(getwd(), "inst", "csv", paste0(trial, ".csv")))
+    output <- output %>% left_join(select(specificationRct, characteristics, pooledTroy, pooledTroySd), by = c('characteristics'='characteristics'))
+    outputCsvSimple <- file.path(outputFolder, paste0(trial, "TroySimple.csv"))
+    for (i in 1:nrow(output)){
+      if(output$statistics[i] == "n"){
+        output$targetSd[i] <- paste0(round((as.numeric(output$target[i]) / as.numeric(output$targetSize)) * 100, 2), '%')
+        output$comparatorSd[i] <- paste0(round((as.numeric(output$comparator[i]) / as.numeric(output$targetSize)) * 100, 2), '%')
+        output$pooledTroySd[i] <- paste0(round(as.numeric(output$pooledTroySd[i]), 2), '%')
+      } else {
+        next
+      }
+    }
+    
+    for (i in 1:nrow(output)){
+      if(!is.na(output$pooledTroySd[i])){
+        if(output$pooledTroySd[i] == "NA%"){
+          output$pooledTroySd[i] <- NA
+        } else {
+          next
+        }
+      }
+    }
+    
+    output$pooledTroySize <- NA
+    output$pooledTroySize[1] <- as.numeric(sizeOE[sizeOE[,"treatment"] < 0,"n"])
+    write.csv(output, outputCsv)
+    write.csv(output[,c(1,2,3,4,5,15,16,8,9,17)], outputCsvSimple)
+    disconnect(connection)
   }
 }
-
 # Troy function
 troyCreateCovariateSettings <- function (prespecAnalyses, specificationRct, useDemographicsGender = FALSE, useDemographicsAge = FALSE,
           useDemographicsAgeGroup = FALSE, useDemographicsRace = FALSE,
