@@ -38,7 +38,7 @@ shinyServer(function(input, output, session) {
     outcomes <- outcomeOfInterest$outcomeName[outcomeOfInterest$outcomeId %in% tcoSubset$outcomeId]
     updateSelectInput(session = session,
                       inputId = "outcome",
-                      choices = unique(outcomes))
+                      choices = outcomes)
   })
   
   resultSubset <- reactive({
@@ -87,7 +87,6 @@ shinyServer(function(input, output, session) {
         return(NULL)
       }
       row <- subset[idx, ]
-      row$psStrategy <- gsub("^PS ", "", gsub(", .*$", "", cohortMethodAnalysis$description[cohortMethodAnalysis$analysisId == row$analysisId]))
       return(row)
     }
   })
@@ -114,28 +113,6 @@ shinyServer(function(input, output, session) {
        return(balance)
      }
   })
-  
-  output$isMetaAnalysis <- reactive({
-    row <- selectedRow()
-    isMetaAnalysis <- !is.null(row) && (row$databaseId %in% metaAnalysisDbIds)
-    if (isMetaAnalysis) {
-      hideTab("detailsTabsetPanel", "Attrition", session = session)
-      hideTab("detailsTabsetPanel", "Population characteristics", session = session)
-      hideTab("detailsTabsetPanel", "Kaplan-Meier", session = session)
-      hideTab("detailsTabsetPanel", "Propensity model", session = session)
-      showTab("detailsTabsetPanel", "Forest plot", session = session)
-    } else {
-      showTab("detailsTabsetPanel", "Attrition", session = session)
-      showTab("detailsTabsetPanel", "Population characteristics", session = session)
-      if (!blind) {
-        showTab("detailsTabsetPanel", "Kaplan-Meier", session = session)
-      }
-      showTab("detailsTabsetPanel", "Propensity model", session = session)
-      hideTab("detailsTabsetPanel", "Forest plot", session = session)
-    }
-    return(isMetaAnalysis)
-  })
-  outputOptions(output, "isMetaAnalysis", suspendWhenHidden = FALSE)
 
   output$mainTable <- renderDataTable({
     table <- resultSubset()
@@ -186,51 +163,17 @@ shinyServer(function(input, output, session) {
     if (is.null(row)) {
       return(NULL)
     } else {
-      if (row$databaseId %in% metaAnalysisDbIds) {
-        results <- getMainResults(connection = connection,
-                                  targetIds = row$targetId,
-                                  comparatorIds = row$comparatorId,
-                                  outcomeIds = row$outcomeId,
-                                  analysisIds = row$analysisId)
-        table <- preparePowerTable(results, cohortMethodAnalysis, includeDatabaseId = TRUE)
-        table$description <- NULL
-        if (blind) {
-          table$targetOutcomes  <- NA
-          table$comparatorOutcomes   <- NA
-          table$targetIr   <- NA
-          table$comparatorIr   <- NA
-        }
-        table$databaseId[table$databaseId %in% metaAnalysisDbIds] <- "Summary"
-        colnames(table) <- c("Source", 
-                             "Target subjects",
-                             "Comparator subjects",
-                             "Target years",
-                             "Comparator years",
-                             "Target events",
-                             "Comparator events",
-                             "Target IR (per 1,000 PY)",
-                             "Comparator IR (per 1,000 PY)",
-                             "MDRR")
-      } else {
-        table <- preparePowerTable(row, cohortMethodAnalysis)
-        table$description <- NULL
-        table$databaseId <- NULL
-        if (blind) {
-          table$targetOutcomes  <- NA
-          table$comparatorOutcomes   <- NA
-          table$targetIr   <- NA
-          table$comparatorIr   <- NA
-        }
-        colnames(table) <- c("Target subjects",
-                             "Comparator subjects",
-                             "Target years",
-                             "Comparator years",
-                             "Target events",
-                             "Comparator events",
-                             "Target IR (per 1,000 PY)",
-                             "Comparator IR (per 1,000 PY)",
-                             "MDRR")
-      }
+      table <- preparePowerTable(row, cohortMethodAnalysis)
+      table$description <- NULL
+      colnames(table) <- c("Target subjects",
+                           "Comparator subjects",
+                           "Target years",
+                           "Comparator years",
+                           "Target events",
+                           "Comparator events",
+                           "Target IR (per 1,000 PY)",
+                           "Comparator IR (per 1,000 PY)",
+                           "MDRR")
       return(table)
     }
   })
@@ -255,20 +198,12 @@ shinyServer(function(input, output, session) {
       targetId <- exposureOfInterest$exposureId[exposureOfInterest$exposureName == input$target]
       comparatorId <- exposureOfInterest$exposureId[exposureOfInterest$exposureName == input$comparator]
       outcomeId <- outcomeOfInterest$outcomeId[outcomeOfInterest$outcomeName == input$outcome]
-      if (row$databaseId %in% metaAnalysisDbIds) {
-        followUpDist <- getCmFollowUpDist(connection = connection,
-                                          targetId = targetId,
-                                          comparatorId = comparatorId,
-                                          outcomeId = outcomeId,
-                                          analysisId = row$analysisId)
-      } else {
-        followUpDist <- getCmFollowUpDist(connection = connection,
-                                          targetId = targetId,
-                                          comparatorId = comparatorId,
-                                          outcomeId = outcomeId,
-                                          databaseId = row$databaseId,
-                                          analysisId = row$analysisId)
-      }
+      followUpDist <- getCmFollowUpDist(connection = connection,
+                                        targetId = targetId,
+                                        comparatorId = comparatorId,
+                                        outcomeId = outcomeId,
+                                        databaseId = row$databaseId,
+                                        analysisId = row$analysisId)
       table <- prepareFollowUpDistTable(followUpDist)
       return(table)
     }
@@ -314,7 +249,7 @@ shinyServer(function(input, output, session) {
     if (is.null(row)) {
       return(NULL)
     } else {
-      text <- "<strong>Figure 1.</strong> Attrition diagram, showing the Number of subjects in the target (<em>%s</em>) and
+      text <- "<strong>Figure 1.</strong> Attrition diagram, showing the Number of subjectsin the target (<em>%s</em>) and
       comparator (<em>%s</em>) group after various stages in the analysis."
       return(HTML(sprintf(text, input$target, input$comparator)))
     }
@@ -390,6 +325,7 @@ shinyServer(function(input, output, session) {
                                   analysisId = row$analysisId)
       
       table <- preparePropensityModelTable(model)
+      print(nrow(table))
       options = list(columnDefs = list(list(className = 'dt-right',  targets = 0)),
                      pageLength = 15,
                      searching = FALSE,
@@ -412,21 +348,14 @@ shinyServer(function(input, output, session) {
     if (is.null(row)) {
       return(NULL)
     } else {
-      if (row$databaseId %in% metaAnalysisDbIds) {
-        ps <- getPs(connection = connection,
-                    targetIds = row$targetId,
-                    comparatorIds = row$comparatorId,
-                    analysisId = row$analysisId)
-      } else {
-        targetId <- exposureOfInterest$exposureId[exposureOfInterest$exposureName == input$target]
-        comparatorId <- exposureOfInterest$exposureId[exposureOfInterest$exposureName == input$comparator]
-        outcomeId <- outcomeOfInterest$outcomeId[outcomeOfInterest$outcomeName == input$outcome]
-        ps <- getPs(connection = connection,
-                    targetIds = targetId,
-                    comparatorIds = comparatorId,
-                    analysisId = row$analysisId,
-                    databaseId = row$databaseId)
-      }
+      targetId <- exposureOfInterest$exposureId[exposureOfInterest$exposureName == input$target]
+      comparatorId <- exposureOfInterest$exposureId[exposureOfInterest$exposureName == input$comparator]
+      outcomeId <- outcomeOfInterest$outcomeId[outcomeOfInterest$outcomeName == input$outcome]
+      ps <- getPs(connection = connection,
+                  targetIds = targetId,
+                  comparatorIds = comparatorId,
+                  analysisId = row$analysisId,
+                  databaseId = row$databaseId)
       plot <- plotPs(ps, input$target, input$comparator)
       return(plot)
     }
@@ -454,6 +383,7 @@ shinyServer(function(input, output, session) {
       return(NULL)
     } else {
       row <- selectedRow()
+      writeLines("Plotting covariate balance")
       plot <- plotCovariateBalanceScatterPlot(balance = bal,
                                               beforeLabel = "Before propensity score adjustment",
                                               afterLabel = "After propensity score adjustment")
@@ -524,56 +454,7 @@ shinyServer(function(input, output, session) {
       )
     }
   })
-  
-  balanceSummaryPlot <- reactive({
-    row <- selectedRow()
-    if (is.null(row) || !(row$databaseId %in% metaAnalysisDbIds)) {
-      return(NULL)
-    } else {
-      balanceSummary <- getCovariateBalanceSummary(connection = connection,
-                                                   targetId = row$targetId,
-                                                   comparatorId = row$comparatorId,
-                                                   analysisId = row$analysisId,
-                                                   beforeLabel = paste("Before", row$psStrategy),
-                                                   afterLabel = paste("After", row$psStrategy))
-      plot <- plotCovariateBalanceSummary(balanceSummary,
-                                          threshold = 0.1,
-                                          beforeLabel = paste("Before", row$psStrategy),
-                                          afterLabel = paste("After", row$psStrategy)) 
-      return(plot)
-    }
-  })
-  
-  output$balanceSummaryPlot <- renderPlot({
-    balanceSummaryPlot()
-  }, res = 100)
-  
-  output$balanceSummaryPlotCaption <- renderUI({
-    row <- selectedRow()
-    if (is.null(row)) {
-      return(NULL)
-    } else {
-      text <- "<strong>Figure 7.</strong> Covariate balance before and after %s. The y axis represents
-      the standardized difference of mean before and after %s on the propensity
-      score. The whiskers show the minimum and maximum values across covariates. The box represents the 
-      interquartile range, and the middle line represents the median. The dashed lines indicate a standardized
-      difference of 0.1."
-      return(HTML(sprintf(text, row$psStrategy, row$psStrategy)))
-    }
-  })
-  
-  output$downloadBalanceSummaryPlotPng <- downloadHandler(filename = "BalanceSummary.png", 
-                                                           contentType = "image/png", 
-                                                           content = function(file) {
-                                                             ggplot2::ggsave(file, plot = balanceSummaryPlot(), width = 12, height = 5.5, dpi = 400)
-                                                           })
-  
-  output$downloadBalanceSummaryPlotPdf <- downloadHandler(filename = "BalanceSummary.pdf", 
-                                                           contentType = "application/pdf", 
-                                                           content = function(file) {
-                                                             ggplot2::ggsave(file = file, plot = balanceSummaryPlot(), width = 12, height = 5.5)
-                                                           })
-  
+
   systematicErrorPlot <- reactive({
     row <- selectedRow()
     if (is.null(row)) {
@@ -607,39 +488,6 @@ shinyServer(function(input, output, session) {
                                                    content = function(file) {
                                                      ggplot2::ggsave(file = file, plot = systematicErrorPlot(), width = 12, height = 5.5)
                                                    })
-  
-  systematicErrorSummaryPlot <- reactive({
-    row <- selectedRow()
-    if (is.null(row) || !(row$databaseId %in% metaAnalysisDbIds)) {
-      return(NULL)
-    } else {
-      negativeControls <- getNegativeControlEstimates(connection = connection,
-                                                      targetId = row$targetId,
-                                                      comparatorId = row$comparatorId,
-                                                      analysisId =  row$analysisId)
-      if (is.null(negativeControls))
-        return(NULL)
-      
-      plot <- plotEmpiricalNulls(negativeControls) 
-      return(plot)
-    }
-  })
-  
-  output$systematicErrorSummaryPlot <- renderPlot({
-    return(systematicErrorSummaryPlot())
-  }, res = 100)
-  
-  output$downloadSystematicErrorSummaryPlotPng <- downloadHandler(filename = "SystematicErrorSummary.png", 
-                                                           contentType = "image/png", 
-                                                           content = function(file) {
-                                                             ggplot2::ggsave(file, plot = systematicErrorSummaryPlot(), width = 12, height = 5.5, dpi = 400)
-                                                           })
-  
-  output$downloadSystematicErrorSummaryPlotPdf <- downloadHandler(filename = "SystematicErrorSummary.pdf", 
-                                                           contentType = "application/pdf", 
-                                                           content = function(file) {
-                                                             ggplot2::ggsave(file = file, plot = systematicErrorSummaryPlot(), width = 12, height = 5.5)
-                                                           })
 
   kaplanMeierPlot <- reactive({
     row <- selectedRow()
@@ -691,51 +539,7 @@ shinyServer(function(input, output, session) {
       return(HTML(sprintf(text, input$target, input$comparator)))
     }
   })
-  
-  
-  forestPlot <- reactive({
-    row <- selectedRow()
-    if (is.null(row) || !(row$databaseId %in% metaAnalysisDbIds)) {
-      return(NULL)
-    } else {
-      results <- getMainResults(connection = connection,
-                                targetIds = row$targetId,
-                                comparatorIds = row$comparatorId,
-                                outcomeIds = row$outcomeId,
-                                analysisIds = row$analysisId)
-      plot <- plotForest(results)
-      return(plot)
-    }
-  })
-  
-  output$forestPlot <- renderPlot({
-    forestPlot()
-  })
-  
-  output$forestPlotCaption <- renderUI({
-    row <- selectedRow()
-    if (is.null(row)) {
-      return(NULL)
-    } else {
-      text <- "<strong>Figure 6.</strong> Forest plot showing the per-database and summary hazard ratios (and 95 percent confidence
-      intervals) comparing %s to %s for the outcome of %s, using %s. Estimates are shown both before and after empirical 
-      calibration. The I2 is computed on the uncalibrated estimates."
-      return(HTML(sprintf(text, input$target, input$comparator, input$outcome, row$psStrategy)))
-    }
-  })
-  
-  output$downloadForestPlotPng <- downloadHandler(filename = "ForestPlot.png", 
-                                                       contentType = "image/png", 
-                                                       content = function(file) {
-                                                         ggplot2::ggsave(file, plot = forestPlot(), width = 12, height = 9, dpi = 400)
-                                                       })
-  
-  output$downloadForestPlotPdf <- downloadHandler(filename = "ForestPlot.pdf", 
-                                                       contentType = "application/pdf", 
-                                                       content = function(file) {
-                                                         ggplot2::ggsave(file = file, plot = forestPlot(), width = 12, height = 9)
-                                                       })
-  
+
   interactionEffects <- reactive({
     row <- selectedRow()
     if (is.null(row)) {
@@ -808,5 +612,4 @@ shinyServer(function(input, output, session) {
       return(subgroupTable)
     }
   })
-  
 })

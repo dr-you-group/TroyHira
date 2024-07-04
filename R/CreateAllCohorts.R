@@ -1,6 +1,6 @@
-# Copyright 2022 Observational Health Data Sciences and Informatics
+# Copyright 2020 Observational Health Data Sciences and Informatics
 #
-# This file is part of TROY
+# This file is part of troy1.1
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,65 +14,90 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#' Create the exposure and outcome cohorts
+#'
+#' @details
+#' This function will create the exposure and outcome cohorts following the definitions included in
+#' this package.
+#'
+#' @param connectionDetails    An object of type \code{connectionDetails} as created using the
+#'                             \code{\link[DatabaseConnector]{createConnectionDetails}} function in the
+#'                             DatabaseConnector package.
+#' @param cdmDatabaseSchema    Schema name where your patient-level data in OMOP CDM format resides.
+#'                             Note that for SQL Server, this should include both the database and
+#'                             schema name, for example 'cdm_data.dbo'.
+#' @param cohortDatabaseSchema Schema name where intermediate data can be stored. You will need to have
+#'                             write privileges in this schema. Note that for SQL Server, this should
+#'                             include both the database and schema name, for example 'cdm_data.dbo'.
+#' @param cohortTable          The name of the table that will be created in the work database schema.
+#'                             This table will hold the exposure and outcome cohorts used in this
+#'                             study.
+#' @param oracleTempSchema     Should be used in Oracle to specify a schema where the user has write
+#'                             privileges for storing temporary tables.
+#' @param outputFolder         Name of local folder to place results; make sure to use forward slashes
+#'                             (/)
+#'
+#' @export
 createCohorts <- function(connectionDetails,
                           cdmDatabaseSchema,
                           cohortDatabaseSchema,
-                          cohortTableNames,
-                          tempEmulationSchema,
+                          cohortTable = "cohort",
+                          oracleTempSchema,
                           outputFolder) {
   if (!file.exists(outputFolder))
     dir.create(outputFolder)
   
-  connection <- DatabaseConnector::connect(connectionDetails)
-  on.exit(DatabaseConnector::disconnect(connection))
+  conn <- DatabaseConnector::connect(connectionDetails)
   
-  CohortGenerator::createCohortTables(connection = connection,
-                                      cohortDatabaseSchema = cohortDatabaseSchema,
-                                      cohortTableNames = cohortTableNames)
-  cohortDefinitionSet <- CohortGenerator::getCohortDefinitionSet(packageName = "TROY",
-                                                                 settingsFileName = "Cohorts.csv",
-                                                                 cohortFileNameValue = "cohortId")
-  CohortGenerator::generateCohortSet(connection = connection,
-                                     cohortDatabaseSchema = cohortDatabaseSchema,
-                                     cohortTableNames = cohortTableNames,
-                                     cdmDatabaseSchema = cdmDatabaseSchema,
-                                     tempEmulationSchema = tempEmulationSchema,
-                                     cohortDefinitionSet = cohortDefinitionSet)
+  .createCohorts(connection = conn,
+                 cdmDatabaseSchema = cdmDatabaseSchema,
+                 cohortDatabaseSchema = cohortDatabaseSchema,
+                 cohortTable = cohortTable,
+                 oracleTempSchema = oracleTempSchema,
+                 outputFolder = outputFolder)
   
-  message("Creating negative control outcome cohorts")
-  pathToCsv <- system.file("settings", "NegativeControls.csv", package = "TROY")
+  pathToCsv <- system.file("settings", "NegativeControls.csv", package = "troy1.1")
   negativeControls <- read.csv(pathToCsv)
+  
+  ParallelLogger::logInfo("Creating negative control outcome cohorts")
   # Currently assuming all negative controls are outcome controls
   negativeControlOutcomes <- negativeControls
   sql <- SqlRender::loadRenderTranslateSql("NegativeControlOutcomes.sql",
-                                           "TROY",
+                                           "troy1.1",
                                            dbms = connectionDetails$dbms,
-                                           tempEmulationSchema = tempEmulationSchema,
+                                           oracleTempSchema = oracleTempSchema,
                                            cdm_database_schema = cdmDatabaseSchema,
                                            target_database_schema = cohortDatabaseSchema,
-                                           target_cohort_table = cohortTableNames$cohortTable,
+                                           target_cohort_table = cohortTable,
                                            outcome_ids = unique(negativeControlOutcomes$outcomeId))
-  DatabaseConnector::executeSql(connection, sql)
+  DatabaseConnector::executeSql(conn, sql)
   
   # Check number of subjects per cohort:
-  message("Counting cohorts")
-  counts <- CohortGenerator::getCohortCounts(connection = connection,
-                                             cohortDatabaseSchema = cohortDatabaseSchema,
-                                             cohortTable = cohortTableNames$cohortTable)
-  
+  ParallelLogger::logInfo("Counting cohorts")
+  sql <- SqlRender::loadRenderTranslateSql("GetCounts.sql",
+                                           "troy1.1",
+                                           dbms = connectionDetails$dbms,
+                                           oracleTempSchema = oracleTempSchema,
+                                           cdm_database_schema = cdmDatabaseSchema,
+                                           work_database_schema = cohortDatabaseSchema,
+                                           study_cohort_table = cohortTable)
+  counts <- DatabaseConnector::querySql(conn, sql)
+  colnames(counts) <- SqlRender::snakeCaseToCamelCase(colnames(counts))
   counts <- addCohortNames(counts)
   write.csv(counts, file.path(outputFolder, "CohortCounts.csv"), row.names = FALSE)
+
+  DatabaseConnector::disconnect(conn)
 }
 
-addCohortNames <- function(data, IdColumnName = "cohortId", nameColumnName = "cohortName") {
-  pathToCsv <- system.file("Cohorts.csv", package = "TROY")
+addCohortNames <- function(data, IdColumnName = "cohortDefinitionId", nameColumnName = "cohortName") {
+  pathToCsv <- system.file("settings", "CohortsToCreate.csv", package = "troy1.1")
   cohortsToCreate <- read.csv(pathToCsv)
-  pathToCsv <- system.file("settings", "NegativeControls.csv", package = "TROY")
+  pathToCsv <- system.file("settings", "NegativeControls.csv", package = "troy1.1")
   negativeControls <- read.csv(pathToCsv)
   
   idToName <- data.frame(cohortId = c(cohortsToCreate$cohortId,
                                       negativeControls$outcomeId),
-                         cohortName = c(as.character(cohortsToCreate$cohortName),
+                         cohortName = c(as.character(cohortsToCreate$atlasName),
                                         as.character(negativeControls$outcomeName)))
   idToName <- idToName[order(idToName$cohortId), ]
   idToName <- idToName[!duplicated(idToName$cohortId), ]
@@ -82,7 +107,7 @@ addCohortNames <- function(data, IdColumnName = "cohortId", nameColumnName = "co
   # Change order of columns:
   idCol <- which(colnames(data) == IdColumnName)
   if (idCol < ncol(data) - 1) {
-    data <- data[, c(1:idCol, ncol(data) , (idCol + 1):(ncol(data) - 1))]
+    data <- data[, c(1:idCol, ncol(data) , (idCol+1):(ncol(data)-1))]
   }
   return(data)
 }

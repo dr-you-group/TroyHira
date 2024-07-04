@@ -1,0 +1,57 @@
+atlasId,atlasName,cohortId,name
+4415,[TROY v1.1] Liraglutide (LEADER),4415,TROY_v11_Liraglutide_LEADER
+4416,[TROY v1.1] DPP-4 (LEADER),4416,TROY_v11_DPP4_LEADER
+4417,[TROY] 3P MACE,4417,TROY_3P_MACE
+4418,[TROY v1.1] Liraglutide (LEADER indication),4418,TROY_v11_Liraglutide_LEADER_indication
+4419,[TROY v1.1] DPP-4 (LEADER indication),4419,TROY_v11_DPP4_LEADER_indication
+4420,[TROY v1.1] Dapagliflozin (DECLARE-TIMI 58),4420,TROY_v11_Dapagliflozin_DECLARETIMI_58
+4421,[TROY v1.1] DPP-4 (DECLARE-TIMI 58),4421,TROY_v11_DPP4_DECLARETIMI_58
+4422,[TROY] HHF + CV death,4422,TROY_HHF__CV_death
+4423,[TROY v1.1] Dapagliflozin (DECLARE-TIMI 58 indication),4423,TROY_v11_Dapagliflozin_DECLARETIMI_58_indication
+4424,[TROY v1.1] DPP-4 (DECLARE-TIMI 58 indication),4424,TROY_v11_DPP4_DECLARETIMI_58_indication
+4425,[TROY v1.1] Empagliflozin (EMPA-REG OUTCOME),4425,TROY_v11_Empagliflozin_EMPAREG_OUTCOME
+4426,[TROY v1.1] DPP-4 (EMPA-REG OUTCOME),4426,TROY_v11_DPP4_EMPAREG_OUTCOME
+4427,[TROY v1.1] Empagliflozin (EMPA-REG OUTCOME indication),4427,TROY_v11_Empagliflozin_EMPAREG_OUTCOME_indication
+4428,[TROY v1.1] DPP-4 (EMPA-REG OUTCOME indication),4428,TROY_v11_DPP4_EMPAREG_OUTCOME_indication
+4429,[TROY v1.1] Canagliflozin (CANVAS),4429,TROY_v11_Canagliflozin_CANVAS
+4430,[TROY v1.1] DPP-4 (CANVAS),4430,TROY_v11_DPP4_CANVAS
+4431,[TROY v1.1] Canagliflozin (CANVAS indication),4431,TROY_v11_Canagliflozin_CANVAS_indication
+4432,[TROY v1.1] DPP-4 (CANVAS indication),4432,TROY_v11_DPP4_CANVAS_indication
+4433,[TROY v1.1] Sitagliptin (TECOS),4433,TROY_v11_Sitagliptin_TECOS
+4434,[TROY v1.1] Sulfonylureas (TECOS),4434,TROY_v11_Sulfonylureas_TECOS
+4435,[TROY] 3P MACE + unstable angina,4435,TROY_3P_MACE__unstable_angina
+4436,[TROY v1.1] Sitagliptin (TECOS indication),4436,TROY_v11_Sitagliptin_TECOS_indication
+4437,[TROY v1.1] Sulfonylureas (TECOS indication),4437,TROY_v11_Sulfonylureas_TECOS_indication
+4438,[TROY v1.1] Linagliptin (CARMELINA indication),4438,TROY_v11_Linagliptin_CARMELINA_indication
+4439,[TROY v1.1] Sulfonylureas (CARMELINA indication),4439,TROY_v11_Sulfonylureas_CARMELINA_indication
+4440,[TROY v1.1] Saxagliptin (SAVOR-TIMI 53),4440,TROY_v11_Saxagliptin_SAVORTIMI_53
+4441,[TROY v1.1] Sulfonylureas (SAVOR-TIMI 53),4441,TROY_v11_Sulfonylureas_SAVORTIMI_53
+4442,[TROY v1.1] Saxagliptin (SAVOR-TIMI 53 indication),4442,TROY_v11_Saxagliptin_SAVORTIMI_53_indication
+4443,[TROY v1.1] Sulfonylureas (SAVOR-TIMI 53 indication),4443,TROY_v11_Sulfonylureas_SAVORTIMI_53_indication
+4444,[TROY v1.1] Linagliptin (CARMELINA),4444,TROY_v11_Linagliptin_CARMELINA
+4445,[TROY v1.1] Sulfonylureas (CARMELINA),4445,TROY_v11_Sulfonylureas_CARMELINA
+4446,[TROY v1.1] Linagliptin (CAROLINA),4446,TROY_v11_Linagliptin_CAROLINA
+4447,[TROY v1.1] Glimepiride (CAROLINA),4447,TROY_v11_Glimepiride_CAROLINA
+4448,[TROY v1.1] Linagliptin (CAROLINA Indication),4448,TROY_v11_Linagliptin_CAROLINA_Indication
+4449,[TROY v1.1] Glimepiride (CAROLINA Indication),4449,TROY_v11_Glimepiride_CAROLINA_Indication
+4450,[TROY v1.1] Prasugrel (TRITON-TIMI 38),4450,TROY_v11_Prasugrel_TRITONTIMI_38
+4451,[TROY v1.1] Clopidogrel (TRITON-TIMI 38),4451,TROY_v11_Clopidogrel_TRITONTIMI_38
+4452,[TROY v1.1] Prasugrel (TRITON-TIMI 38 indication),4452,TROY_v11_Prasugrel_TRITONTIMI_38_indication
+4470,[TROY v1.1] Clopidogrel (TRITON-TIMI 38 indication),4470,TROY_v11_Clopidogrel_TRITONTIMI_38_indication
+4454,[TROY v1.1] Ticagrelor (PLATO),4454,TROY_v11_Ticagrelor_PLATO
+4455,[TROY v1.1] Clopidogrel (PLATO),4455,TROY_v11_Clopidogrel_PLATO
+4456,[TROY v1.1] Ticagrelor (PLATO indication),4456,TROY_v11_Ticagrelor_PLATO_indication
+4453,[TROY v1.1] Clopidogrel (PLATO indication),4453,TROY_v11_Clopidogrel_PLATO_indication
+4457,[TROY v1.1] Rivaroxaban (RCT-ROCKETAF),4457,TROY_v11_Rivaroxaban_RCTROCKETAF
+4458,[TROY v1.1] Warfarin (RCT-ROCKETAF),4458,TROY_v11_Warfarin_RCTROCKETAF
+4459,[TROY] Stroke + systemic embolism (3),4459,TROY_Stroke__systemic_embolism_3
+4460,[TROY v1.1] Rivaroxaban (RCT-ROCKETAF indication),4460,TROY_v11_Rivaroxaban_RCTROCKETAF_indication
+4461,[TROY v1.1] Warfarin (RCT-ROCKETAF indication),4461,TROY_v11_Warfarin_RCTROCKETAF_indication
+4462,[TROY v1.1] Apixaban (ARISTOTLE),4462,TROY_v11_Apixaban_ARISTOTLE
+4463,[TROY v1.1] Warfarin (ARISTOTLE),4463,TROY_v11_Warfarin_ARISTOTLE
+4464,[TROY v1.1] Apixaban (ARISTOTLE indication),4464,TROY_v11_Apixaban_ARISTOTLE_indication
+4465,[TROY v1.1] Warfarin (ARISTOTLE indication),4465,TROY_v11_Warfarin_ARISTOTLE_indication
+4466,[TROY v1.1] Edoxaban (ENGAGEAF-TIMI48),4466,TROY_v11_Edoxaban_ENGAGEAFTIMI48
+4467,[TROY v1.1] Warfarin (ENGAGEAF-TIMI48),4467,TROY_v11_Warfarin_ENGAGEAFTIMI48
+4468,[TROY v1.1] Edoxaban (ENGAGEAF-TIMI48 indication),4468,TROY_v11_Edoxaban_ENGAGEAFTIMI48_indication
+4469,[TROY v1.1] Warfarin (ENGAGEAF-TIMI48 indication),4469,TROY_v11_Warfarin_ENGAGEAFTIMI48_indication

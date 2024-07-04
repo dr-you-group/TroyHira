@@ -5,18 +5,19 @@
 	"actions":[{
 		"type": "fileNameFindAndReplace",
 		"input": "packageName",
-		"find": "TROY"
+		"find": "troy1.1"
 	},{
 		"type": "stringFindAndReplace",
 		"input": "packageName",
-		"find": "TROY"
+		"find": "troy1.1"
 	},{
 		"type": "jsonArrayToCsv",
 		"input": "cohortDefinitions",
-		"mapping": [{"source": "id", "target": "webApiCohortId"},
+		"mapping": [{"source": "id", "target": "atlasId"},
+					{"source": "name", "target": "atlasName"},
 					{"source": "id", "target": "cohortId"},
-					{"source": "name", "target": "cohortName"}],
-		"output": "inst/Cohorts.csv"
+					{"source": "name", "target": "name", "modifiers": ["convertToFileName"]}],
+		"output": "inst/settings/CohortsToCreate.csv"
 	},{
 		"type": "jsonArrayToCsv",
 		"input": "estimationAnalysisSettings.analysisSpecification.targetComparatorOutcomes",
@@ -38,13 +39,13 @@
 	},{
 		"type": "jsonArrayToJson",
 		"input": "cohortDefinitions",
-		"fileName": "id",
+		"fileName": "name",
 		"payload": "expression",
 		"output": "inst/cohorts"
 	},{
 		"type": "jsonArrayToSql",
 		"input": "cohortDefinitions",
-		"fileName": "id",
+		"fileName": "name",
 		"payload": "expression",
 		"output": "inst/sql/sql_server"
 	},{
