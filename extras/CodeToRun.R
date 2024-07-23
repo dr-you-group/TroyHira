@@ -1,4 +1,4 @@
-library(troy1.1)
+library(TROYpackage)
 
 # Optional: specify where the temporary files (used by the Andromeda package) will be created:
 options(andromedaTempFolder = "s:/andromedaTemp")
@@ -7,7 +7,7 @@ options(andromedaTempFolder = "s:/andromedaTemp")
 maxCores <- parallel::detectCores()
 
 # The folder where the study intermediate and result files will be written:
-outputFolder <- "s:/troy1.1"
+outputFolder <- "s:/TROYpackage"
 
 # Details for connecting to the server:
 connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = "pdw",

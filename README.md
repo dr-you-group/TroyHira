@@ -1,4 +1,4 @@
-troy1.1
+TROYpackage
 ==============================
 
 
@@ -26,7 +26,7 @@ How to run
 3. Once installed, you can execute the study by modifying and using the code below. For your convenience, this code is also provided under `extras/CodeToRun.R`:
 
 	```r
-	library(troy1.1)
+	library(TROYpackage)
 	
   # Optional: specify where the temporary files (used by the Andromeda package) will be created:
   options(andromedaTempFolder = "c:/andromedaTemp")
@@ -38,7 +38,7 @@ How to run
 	minCellCount <- 5
 	
 	# The folder where the study intermediate and result files will be written:
-	outputFolder <- "c:/troy1.1"
+	outputFolder <- "c:/TROYpackage"
 	
 	# Details for connecting to the server:
 	# See ?DatabaseConnector::createConnectionDetails for help
@@ -97,11 +97,11 @@ How to run
 
 License
 =======
-The troy1.1 package is licensed under Apache License 2.0
+The TROYpackage package is licensed under Apache License 2.0
 
 Development
 ===========
-troy1.1 was developed in ATLAS and R Studio.
+TROYpackage was developed in ATLAS and R Studio.
 
 ### Development status
 

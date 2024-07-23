@@ -1,6 +1,6 @@
 # Copyright 2020 Observational Health Data Sciences and Informatics
 #
-# This file is part of troy1.1
+# This file is part of TROYpackage
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@
 
 # Format and check code ---------------------------------------------------
 OhdsiRTools::formatRFolder()
-OhdsiRTools::checkUsagePackage("troy1.1")
+OhdsiRTools::checkUsagePackage("TROYpackage")
 OhdsiRTools::updateCopyrightYearFolder()
 devtools::spell_check()
 
 # Create manual -----------------------------------------------------------
-unlink("extras/troy1.1.pdf")
-shell("R CMD Rd2pdf ./ --output=extras/troy1.1.pdf")
+unlink("extras/TROYpackage.pdf")
+shell("R CMD Rd2pdf ./ --output=extras/TROYpackage.pdf")
 
 # Create vignettes ---------------------------------------------------------
 rmarkdown::render("vignettes/UsingSkeletonPackage.Rmd",
@@ -43,7 +43,7 @@ ROhdsiWebApi::insertCohortDefinitionSetInPackage(fileName = "CohortsToCreate.csv
                                                  insertTableSql = TRUE,
                                                  insertCohortCreationR = TRUE,
                                                  generateStats = FALSE,
-                                                 packageName = "troy1.1")
+                                                 packageName = "TROYpackage")
 
 # Create analysis details -------------------------------------------------
 source("extras/CreateStudyAnalysisDetails.R")
@@ -51,4 +51,4 @@ createAnalysesDetails("inst/settings/")
 createPositiveControlSynthesisArgs("inst/settings/")
 
 # Store environment in which the study was executed -----------------------
-OhdsiRTools::createRenvLockFile("troy1.1")
+OhdsiRTools::createRenvLockFile("TROYpackage")
