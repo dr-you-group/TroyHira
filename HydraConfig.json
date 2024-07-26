@@ -5,11 +5,11 @@
 	"actions":[{
 		"type": "fileNameFindAndReplace",
 		"input": "packageName",
-		"find": "TROYpackage"
+		"find": "TROYrevised240726"
 	},{
 		"type": "stringFindAndReplace",
 		"input": "packageName",
-		"find": "TROYpackage"
+		"find": "TROYrevised240726"
 	},{
 		"type": "jsonArrayToCsv",
 		"input": "cohortDefinitions",
